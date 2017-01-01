@@ -1,0 +1,2 @@
+defmodule Ebayka do
+end
