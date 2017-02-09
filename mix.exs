@@ -9,7 +9,11 @@ defmodule Ebayka.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+
+     # Hex
+     description: description(),
+     package: package()]
   end
 
   def application do
@@ -21,7 +25,8 @@ defmodule Ebayka.Mixfile do
       {:poison, "~> 2.0"},
       {:xml_builder, "~> 0.0.8"},
       {:sweet_xml, "~> 0.5"},
-      {:mock, "~> 0.2.0", only: :test}]
+      {:mock, "~> 0.2.0", only: :test},
+      {:ex_doc, "~> 0.14", only: :dev}]
   end
 
   defp package do
