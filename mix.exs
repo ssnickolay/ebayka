@@ -1,9 +1,11 @@
 defmodule Ebayka.Mixfile do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [app: :ebayka,
-     version: "0.1.0",
+     version: @version,
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -20,5 +22,20 @@ defmodule Ebayka.Mixfile do
       {:xml_builder, "~> 0.0.8"},
       {:sweet_xml, "~> 0.5"},
       {:mock, "~> 0.2.0", only: :test}]
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md"],
+      maintainers: ["Nikolay Sverchkov"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/GaussGroup/ebayka"}
+    ]
+  end
+
+  defp description do
+    """
+    A small library to help using the eBay Trading API with Elixir
+    """
   end
 end
