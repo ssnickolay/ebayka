@@ -30,14 +30,14 @@ Ebayka is a small library which makes it a little easier to use the eBay Trading
     import XmlBuilder
 
     defp build(product) do
-        [
-          element(:Title, product.title),
-          element(:Description, product.description),
-          element(:PrimaryCategory, [ element(:CategoryID, product.category_id) ]),
-          element(:StartPrice, product.price),
-          ...
-          element(:Site, "US")
-        ]
+      [
+        element(:Title, product.title),
+        element(:Description, product.description),
+        element(:PrimaryCategory, [ element(:CategoryID, product.category_id) ]),
+        element(:StartPrice, product.price),
+        ...
+        element(:Site, "US")
+      ]
     end
   end
   ```
@@ -45,7 +45,7 @@ Ebayka is a small library which makes it a little easier to use the eBay Trading
 5. Make the request:
 
   ```elixir
-    Ebayka.Request.make("VerifyAddItem", ReviseItemRequest.build(product))
+  Ebayka.Request.make("VerifyAddItem", ReviseItemRequest.build(product))
     # .. XML RESPONSE ..
   ```
 
