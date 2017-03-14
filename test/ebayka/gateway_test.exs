@@ -4,7 +4,6 @@ defmodule Ebayka.GatewayTest do
   import Mock
 
   @tuple_body {:Item, nil, [ {:Title, nil, "Ebay Product Title"} ] }
-  @xml_body "<Item><Title>Something Title</Title></Item>"
 
   def trim_xml(string), do: string |> String.replace(~r/\r|\n|\t|\s/, "")
 
