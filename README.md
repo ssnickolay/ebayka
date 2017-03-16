@@ -1,3 +1,11 @@
+Ebayka
+
+=======
+
+[![Build Status](https://travis-ci.org/GaussGroup/ebayka.svg?branch=master)](https://travis-ci.org/GaussGroup/ebayka)
+
+## Overview
+
 Ebayka is a small library which makes it a little easier to use the eBay Trading API with Elixir.
 
 ## Getting Started
