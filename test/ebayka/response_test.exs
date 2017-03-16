@@ -19,10 +19,10 @@ defmodule Ebayka.ResponseTest do
 """
 
   test "parse Ebay response" do
-    response = Response.build(@body)
+    %{ack: ack, code: code, errors: errors} = Response.build(@body)
 
-    assert response.ack == "Failure"
-    assert response.errors == ["The category selected is not a leaf category.", "Please enter a valid price for your item (e.g. $0.01)."]
-    assert response.code == "1047"
+    assert ack == "Failure"
+    assert errors == ["The category selected is not a leaf category.", "Please enter a valid price for your item (e.g. $0.01)."]
+    assert code == "1047"
   end
 end
