@@ -1,5 +1,4 @@
 Ebayka
-
 =======
 
 [![Build Status](https://travis-ci.org/GaussGroup/ebayka.svg?branch=master)](https://travis-ci.org/GaussGroup/ebayka)
@@ -13,7 +12,7 @@ Ebayka is a small library which makes it a little easier to use the eBay Trading
 1. Add this to the `defp deps do` list in your mix.exs file:
 
   ```elixir
-  {:ebayka, "~> 0.1"}
+  {:ebayka, "~> 0.2"}
   ```
 
 2. Also in mix.exs, add `:ebayka` and `:xml_builder` (for creating XML requests) to the `:applications` list in `def application`.
