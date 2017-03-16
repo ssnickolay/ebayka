@@ -1,3 +1,11 @@
+Ebayka
+
+=======
+
+[![Build Status](https://travis-ci.org/GaussGroup/ebayka.svg?branch=master)](https://travis-ci.org/GaussGroup/ebayka)
+
+## Overview
+
 Ebayka is a small library which makes it a little easier to use the eBay Trading API with Elixir.
 
 ## Getting Started
@@ -19,7 +27,7 @@ Ebayka is a small library which makes it a little easier to use the eBay Trading
      cert_id: "your Ebay cert ID",
      auth_token: "your Ebay auth token",
      site_id: 0, # Your site id, 0 - USA
-     level: 989, # API version
+     level: 995, # API version
      gateway: Ebayka.Gateway # gateway for execute requests. By default: Ebayka.Gateway
    ```
 

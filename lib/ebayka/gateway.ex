@@ -1,4 +1,5 @@
 defmodule Ebayka.Gateway do
+  import XmlBuilder
   use HTTPoison.Base
 
   @sandbox "https://api.sandbox.ebay.com/ws/api.dll"
@@ -9,16 +10,18 @@ defmodule Ebayka.Gateway do
   end
 
   def prepare_request(method, body) do
-    "<?xml version=\"1.0\" encoding=\"utf-8\"?>
-    <#{ method }Request xmlns=\"urn:ebay:apis:eBLBaseComponents\">
-      <RequesterCredentials>
-        <eBayAuthToken>#{ config()[:auth_token] }</eBayAuthToken>
-      </RequesterCredentials>
-      #{ body |> prepare_body }
-    </#{ method }Request>"
+    element("#{ method }Request", %{xmlns: "urn:ebay:apis:eBLBaseComponents"},
+      [
+        element(:RequesterCredentials, nil, [
+          element(:eBayAuthToken, nil, config()[:auth_token])
+        ])
+      ] ++ [ body ]
+    )
+    |> generate
+    |> add_xml_title
   end
 
-  defp prepare_body(body), do: body |> XmlBuilder.generate
+  defp add_xml_title(xml), do: ~s(<?xml version="1.0" encoding="utf-8"?>#{ xml })
 
   defp headers(method) do
     %{
