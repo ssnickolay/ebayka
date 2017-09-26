@@ -1,7 +1,7 @@
 Ebayka
 =======
 
-[![Build Status](https://travis-ci.org/GaussGroup/ebayka.svg?branch=master)](https://travis-ci.org/GaussGroup/ebayka)
+[![Build Status](https://travis-ci.org/ssnickolay/ebayka.svg?branch=master)](https://travis-ci.org/ssnickolay/ebayka)
 
 ## Overview
 
@@ -59,8 +59,8 @@ Ebayka is a small library which makes it a little easier to use the eBay Trading
 Check out [/examples](/examples) directory as a quick intro.
 
 ## Contributing
-If you feel like porting or fixing something, please drop a [pull request](https://github.com/GaussGroup/ebayka/pulls) or [issue tracker](https://github.com/GaussGroup/ebayka/issues) at GitHub! Check out the [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+If you feel like porting or fixing something, please drop a [pull request](https://github.com/ssnickolay/ebayka/pulls) or [issue tracker](https://github.com/ssnickolay/ebayka/issues) at GitHub! Check out the [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
 ## License
 `Ebayka` source code is released under Apache 2 License.
-Check [LICENSE](LICENSE) and [NOTICE](NOTICE) files for more details. The project HEAD is https://github.com/GaussGroup/ebayka.
+Check [LICENSE](LICENSE) and [NOTICE](NOTICE) files for more details. The project HEAD is https://github.com/ssnickolay/ebayka.

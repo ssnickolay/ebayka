@@ -34,7 +34,7 @@ defmodule Ebayka.Mixfile do
       files: ["lib", "mix.exs", "README.md"],
       maintainers: ["Nikolay Sverchkov"],
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/GaussGroup/ebayka"}
+      links: %{"GitHub" => "https://github.com/ssnickolay/ebayka"}
     ]
   end
 
