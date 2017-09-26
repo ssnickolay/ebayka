@@ -1,42 +1,38 @@
 defmodule EbayProduct do
-  defstruct :
+  defstruct title: nil, description: nil, category_id: nil, price: nil, quantity: nil, sku: nil
 end
 
-defmodule AddItemRequest do
+defmodule VerifyAddItem do
   import XmlBuilder
 
-  defp attributes(product) do
+  def build(product) do
     element(:Item, [
       element(:Title, product.title),
-      element(:SubTitle, product.sub_title),
       element(:Description, product.desciprion),
-      element(:HitCounter, 5),
       element(:PrimaryCategory, [ element(:CategoryID, product.category_id) ]),
       element(:StartPrice, product.price),
       element(:CategoryMappingAllowed, true),
       element(:ConditionID, 1000), # 1000 - New with Tags
       element(:Country, "US"),
       element(:Currency, "USD"),
-      element(:DispatchTimeMax, Application.get_env(:inventory_core, :ebay_api)[:dispatch_time_max]),
-      element(:ListingDuration, Application.get_env(:inventory_core, :ebay_api)[:listing_duration]),
+      element(:DispatchTimeMax, 3),
+      element(:ListingDuration, "Days_7"),
       element(:Location, Application.get_env(:inventory_core, :ebay_api)[:location]),
       element(:ListingType, "FixedPriceItem"),
-      element(:PayPalEmailAddress, Application.get_env(:inventory_core, :ebay_api)[:pay_pal_email]),
-      element(:PostalCode, Application.get_env(:inventory_core, :ebay_api)[:postal_code]),
-      element(:Quantity, 1), # Only by one item
+      element(:PayPalEmailAddress, "magicalbookseller@yahoo.com"),
+      element(:PostalCode, 95125),
+      element(:Quantity, product.quantity),
       element(:SKU, product.sku),
-      element(:ItemSpecifics, specifics(product.ebay_product)),
       element(:BuyerRequirementDetails, [
         element(:ShipToRegistrationCountry, true)
       ]),
       element(:ReturnPolicy, [
         element(:ReturnsAcceptedOption, "ReturnsAccepted"),
         element(:RefundOption, "MoneyBack"),
-        element(:ReturnsWithinOption, Application.get_env(:inventory_core, :ebay_api)[:returns_within_option]),
-        element(:Description, Application.get_env(:inventory_core, :ebay_api)[:return_description]),
+        element(:ReturnsWithinOption, "Days_30"),
+        element(:Description, "If you are not satisfied, return the book for refund."),
         element(:ShippingCostPaidByOption, "Buyer")
       ]),
-      element(:ShipToLocations, Application.get_env(:inventory_core, :ebay_api)[:ship_to_locations]),
       element(:ShippingDetails, [
         element(:ShippingType, "Flat"),
         element(:ShippingServiceOptions, [
@@ -51,6 +47,23 @@ defmodule AddItemRequest do
   end
 end
 
+  @doc """
+  ## Example
+      iex> ebay_product = %EbayProduct{
+        title: "Harry Potter and the Philosopher's Stone",
+        description: "This is the first book in the Harry Potter series. In excellent condition!",
+        category_id: 377,
+        price: 1.0,
+        quantity: 1,
+        sku: "EA-123"
+      }
+      iex> case ProductRepository.verify(ebay_product) do
+        {:ok, _} ->
+          IO.puts("Ebay product is valid")
+        {:error, errors} ->
+          IO.puts("Errors: #{inspec errors}")
+      end
+  """
 
 defmodule ProductRepository do
   @success %{ack: "Success"}
@@ -59,7 +72,7 @@ defmodule ProductRepository do
 
   def verify(%EbayProduct{} = product) do
     "VerifyAddItem"
-    |> Ebayka.Request.make_and_parse(AddItemRequest.build(product))
+    |> Ebayka.Request.make_and_parse(VerifyAddItem.build(product))
     |> handle_response
   end
 
