@@ -1,8 +1,14 @@
 defmodule EbayProduct do
+  @moduledoc """
+  Simple struct for DSL
+  """
   defstruct title: nil, description: nil, category_id: nil, price: nil, quantity: nil, sku: nil
 end
 
 defmodule VerifyAddItem do
+  @moduledoc """
+  VerifyAddItem request
+  """
   import XmlBuilder
 
   def build(product) do
@@ -66,6 +72,9 @@ end
   """
 
 defmodule ProductRepository do
+  @moduledoc """
+  Layer between Entity and Ebayka DSL
+  """
   @success %{ack: "Success"}
   @warning %{ack: "Warning"}
   @fail %{ack: "Failure"}
@@ -76,8 +85,8 @@ defmodule ProductRepository do
     |> handle_response
   end
 
-  defp handle_response({:ok, @success}), do: { :ok, true }
-  defp handle_response({:ok, @warning}), do: { :ok, true }
-  defp handle_response({:ok, @fail = response}), do: { :error, response.errors }
-  defp handle_response({:error, nil}), do: { :error, [ "Fatal exception" ] }
+  defp handle_response({:ok, @success}), do: {:ok, true}
+  defp handle_response({:ok, @warning}), do: {:ok, true}
+  defp handle_response({:ok, @fail = response}), do: {:error, response.errors}
+  defp handle_response({:error, nil}), do: {:error, ["Fatal exception"]}
 end
